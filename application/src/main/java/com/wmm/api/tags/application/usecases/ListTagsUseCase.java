@@ -1,4 +1,4 @@
 package com.wmm.api.tags.application.usecases;
 
-public class ListTagsUseCase {
+public interface ListTagsUseCase {
 }

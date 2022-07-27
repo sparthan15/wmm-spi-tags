@@ -1,5 +1,6 @@
 package com.wmm.api.tags.infrastructure.adapters.model.request;
 
+import com.wmm.api.tags.domain.vo.ThresholdPeriod;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,6 +15,7 @@ public class tagRequestTest {
         assertThat(tagRequest.getName()).isEqualTo("RAPPI");
         assertThat(tagRequest.getDescription()).isEqualTo("Home shopping");
         assertThat(tagRequest.getAmount()).isEqualTo(10.0);
+        assertThat(tagRequest.getPeriod()).isEqualTo(ThresholdPeriod.MONTHLY.name());
     }
 
 }

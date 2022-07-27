@@ -6,6 +6,8 @@ import com.wmm.api.tags.domain.entities.ThresholdLimit;
 import com.wmm.api.tags.infrastructure.adapters.model.request.NewTagRequest;
 import com.wmm.api.tags.infrastructure.adapters.model.response.TagResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +19,9 @@ public class TagInputAdapter {
     private final CreateTagUseCase createTagUseCase;
     private TagResponse tagResponse = new TagResponse();
 
-    public TagResponse saveNewTag(NewTagRequest tagRequest) {
+    @PostMapping
+    public TagResponse saveNewTag(@RequestBody NewTagRequest tagRequest) {
+        System.out.println(tagRequest);
         Tag createdTag = createTagUseCase.execute(tagRequest.toModel());
         tagResponse.mapFromModel(createdTag);
         return tagResponse;

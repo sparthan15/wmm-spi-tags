@@ -4,23 +4,27 @@ import com.wmm.api.tags.domain.entities.Tag;
 import com.wmm.api.tags.domain.entities.ThresholdLimit;
 import lombok.*;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @ToString
 @Builder
 public class NewTagRequest {
-    private final String name;
-    private final String description;
-    private final Double amount;
-    private final String period;
-    private final String userId;
+    private  String name;
+    private  String description;
+    private  Double amount;
+    private  String period;
+    private  String userId;
 
 
     public Tag toModel() {
+        System.out.println( ThresholdLimit.byPeriodName(amount,
+                period));
         return Tag.builder()
                 .name(name)
                 .description(description)
-                .thresholdLimit(ThresholdLimit.byPeriodName(amount,
+                .thresholdLimit(
+                        ThresholdLimit.byPeriodName(amount,
                         period))
                 .userId(userId)
                 .build();

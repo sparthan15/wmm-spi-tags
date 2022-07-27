@@ -1,5 +1,6 @@
 package com.wmm.tickets.infrastructure.adapters.input.rest;
 
+import com.wmm.api.tags.domain.vo.ThresholdPeriod;
 import com.wmm.api.tags.infrastructure.adapter.TagsApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,26 +28,18 @@ public class TagEndpointTest {
 
     @Test
     void  savingANewTag() throws Exception {
-        mockMvc.perform(post(apiUri+"/incomes")
+        mockMvc.perform(post(apiUri)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "    \"userId\":\""+ USER_ID_TEST +"\"\n" +
-                        "    \"startDate\":\"asdasd\"\n" +
-                        "    \"endDate\":\""+ END_DATE +"\"\n" +
+                        "    \"name\":\"asdasd\"\n" +
+                        "    \"description\":\"aaaaaa\"\n" +
+                        "    \"amount\":\" 10.0\"\n" +
+                        "    \"period\":\""+ ThresholdPeriod.MONTHLY.name() +"\"\n" +
                         "}")
-        ).andExpect(status().isBadRequest());
+        ).andExpect(status().isOk());
     }
 
-    @Test
-    void  outcomesTicketRequestWithOutEndDateReturnBadRequest() throws Exception {
-        mockMvc.perform(post(apiUri+"/incomes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\n" +
-                        "    \"userId\":\""+ USER_ID_TEST +"\"\n" +
-                        "    \"startDate\":\""+START_DATE+"\"\n" +
-                        "    \"endDate\":\"asdadas\"\n" +
-                        "}")
-        ).andExpect(status().isBadRequest());
-    }
+
 
 }

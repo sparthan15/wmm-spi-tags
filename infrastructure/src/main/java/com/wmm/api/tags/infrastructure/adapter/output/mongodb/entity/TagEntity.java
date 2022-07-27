@@ -4,29 +4,26 @@ import com.wmm.api.tags.domain.entities.Tag;
 import com.wmm.api.tags.domain.entities.ThresholdLimit;
 import com.wmm.api.tags.infrastructure.adapters.model.request.NewTagRequest;
 import com.wmm.api.tags.infrastructure.adapters.model.response.TagResponse;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@RequiredArgsConstructor
-
+@AllArgsConstructor
+@Setter
 @Builder
 @Getter
 @ToString
 @Document("tags")
 public class TagEntity {
     @Id
-    private final String id;
+    private  String id;
     @Version
-    private final Long version;
-    private final String name;
-    private final String description;
-    private final ThresholdLimit thresholdLimit;
-    private final String userId;
+    private  Long version;
+    private  String name;
+    private  String description;
+    private  ThresholdLimit thresholdLimit;
+    private  String userId;
 
 
     public TagResponse toResponse() {
