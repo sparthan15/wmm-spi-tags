@@ -15,7 +15,7 @@ public class TagResponseTest {
         assertThat(tagResponse).isNotNull();
         assertThat(tagResponse.getId()).isEqualTo(tag.getId());
         assertThat(tagResponse.getUserId()).isEqualTo(tag.getUserId());
-        assertThat(tagResponse.getMaxExpense()).isEqualTo(tag.getThresholdLimit().getMaxExpense());
+        assertThat(tagResponse.getAmounnt()).isEqualTo(tag.getThresholdLimit().getMaxExpense());
         assertThat(tagResponse.getPeriod()).isEqualTo(tag.getThresholdLimit().getThresholdPeriod().name());
         assertThat(tagResponse.getUserId()).isEqualTo(tag.getUserId());
     }

@@ -32,7 +32,7 @@ public class TagEntity {
                 .name(name)
                 .description(description)
                 .period(thresholdLimit.getThresholdPeriod().name())
-                .maxExpense(thresholdLimit.getMaxExpense())
+                .amounnt(thresholdLimit.getMaxExpense())
                 .build();
     }
 

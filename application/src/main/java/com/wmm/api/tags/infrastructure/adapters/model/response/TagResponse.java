@@ -14,27 +14,28 @@ public class TagResponse {
     private  String id;
     private  String name;
     private  String description;
-    private  Double maxExpense;
+    private  Double amounnt;
     private  String period;
     private  String userId;
 
    public TagResponse(Tag tag){
        this.id = tag.getId();
-       this.maxExpense = tag.getThresholdLimit().getMaxExpense();
+       this.amounnt = tag.getThresholdLimit().getMaxExpense();
        this.userId = tag.getUserId();
        this.name = tag.getName();
        this.description = tag.getDescription();
        this.period = tag.getThresholdLimit().getThresholdPeriodName();
-       this.maxExpense = tag.getThresholdLimit().getMaxExpense();
+       this.amounnt = tag.getThresholdLimit().getMaxExpense();
    }
 
-    public void mapFromModel(Tag tag){
+    public TagResponse mapFromModel(Tag tag){
         this.id = tag.getId();
-        this.maxExpense = tag.getThresholdLimit().getMaxExpense();
+        this.amounnt = tag.getThresholdLimit().getMaxExpense();
         this.userId = tag.getUserId();
         this.name = tag.getName();
         this.description = tag.getDescription();
         this.period = tag.getThresholdLimit().getThresholdPeriodName();
-        this.maxExpense = tag.getThresholdLimit().getMaxExpense();
+        this.amounnt = tag.getThresholdLimit().getMaxExpense();
+        return this;
     }
 }
