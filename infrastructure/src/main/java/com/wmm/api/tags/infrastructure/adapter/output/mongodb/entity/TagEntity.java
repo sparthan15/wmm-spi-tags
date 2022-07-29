@@ -10,6 +10,7 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Builder
 @Getter
