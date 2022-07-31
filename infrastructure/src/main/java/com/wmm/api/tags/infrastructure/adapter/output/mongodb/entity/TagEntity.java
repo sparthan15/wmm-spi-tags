@@ -2,8 +2,8 @@ package com.wmm.api.tags.infrastructure.adapter.output.mongodb.entity;
 
 import com.wmm.api.tags.domain.entities.Tag;
 import com.wmm.api.tags.domain.entities.ThresholdLimit;
-import com.wmm.api.tags.infrastructure.adapters.model.request.NewTagRequest;
-import com.wmm.api.tags.infrastructure.adapters.model.response.TagResponse;
+import com.wmm.api.tags.infrastructure.adapter.input.rest.model.request.NewTagRequest;
+import com.wmm.api.tags.infrastructure.adapter.input.rest.model.response.TagResponse;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
@@ -18,34 +18,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("tags")
 public class TagEntity {
     @Id
-    private  String id;
+    private String id;
     @Version
-    private  Long version;
-    private  String name;
-    private  String description;
-    private  ThresholdLimit thresholdLimit;
-    private  String userId;
+    private Long version;
+    private String name;
+    private String description;
+    private ThresholdLimit thresholdLimit;
+    private String userId;
 
-
-    public TagResponse toResponse() {
-        return TagResponse.builder()
-                .id(id)
-                .name(name)
-                .description(description)
-                .period(thresholdLimit.getThresholdPeriod().name())
-                .amounnt(thresholdLimit.getMaxExpense())
-                .build();
-    }
-
-    public Tag toModel() {
-        return Tag.builder()
-                .id(id)
-                .name(name)
-                .description(description)
-                .thresholdLimit(thresholdLimit)
-                .userId(userId)
-                .build();
-    }
 
     public TagEntity(Tag tag) {
         this.id = tag.getId();
@@ -66,5 +46,24 @@ public class TagEntity {
         this.userId = newTagRequest.getUserId();
     }
 
-}
+    public TagResponse toResponse() {
+        return TagResponse.builder()
+                .id(id)
+                .name(name)
+                .description(description)
+                .period(thresholdLimit.getThresholdPeriod().name())
+                .amount(thresholdLimit.getMaxExpense())
+                .build();
+    }
 
+    public Tag toModel() {
+        return Tag.builder()
+                .id(id)
+                .name(name)
+                .description(description)
+                .thresholdLimit(thresholdLimit)
+                .userId(userId)
+                .build();
+    }
+
+}

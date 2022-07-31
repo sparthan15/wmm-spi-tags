@@ -5,7 +5,6 @@ import com.wmm.api.tags.domain.entities.Tag;
 import com.wmm.api.tags.domain.entities.ThresholdLimit;
 import com.wmm.api.tags.infrastructure.adapter.input.rest.GetTagInputAdapter;
 import com.wmm.api.tags.infrastructure.adapter.output.mongodb.entity.TagEntity;
-import com.wmm.api.tags.infrastructure.adapters.model.response.TagResponse;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,11 +28,12 @@ public class GetTagInputAdapterTest {
     private GetTagsUseCase getTagsUseCase;
 
     private String USER_ID = "1ASDD";
+
     @Test
-    public void test(){
+    public void test() {
         Mockito.when(getTagsUseCase.getTagsByUserId(USER_ID)).thenReturn(List.of(Tag.builder()
                 .thresholdLimit(ThresholdLimit.buildNoLimitThreshold()).build()));
-        Page<TagEntity> response =tagInputAdapter.getTagsByUser(USER_ID, PageRequest.of(0, 1,
+        Page<TagEntity> response = tagInputAdapter.getTagsByUser(USER_ID, PageRequest.of(0, 1,
                 Sort.by(new String[]{"detail"})));
         Assertions.assertThat(response).isNotNull();
     }

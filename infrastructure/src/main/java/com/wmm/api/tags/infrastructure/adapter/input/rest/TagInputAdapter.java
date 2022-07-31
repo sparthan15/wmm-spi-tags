@@ -1,15 +1,14 @@
 package com.wmm.api.tags.infrastructure.adapter.input.rest;
 
 import com.wmm.api.tags.application.usecases.CreateTagUseCase;
+import com.wmm.api.tags.application.usecases.DeleteTagUseCase;
 import com.wmm.api.tags.domain.entities.Tag;
-import com.wmm.api.tags.domain.entities.ThresholdLimit;
-import com.wmm.api.tags.infrastructure.adapters.model.request.NewTagRequest;
-import com.wmm.api.tags.infrastructure.adapters.model.response.TagResponse;
+import com.wmm.api.tags.infrastructure.adapter.input.rest.model.TagMapper;
+import com.wmm.api.tags.infrastructure.adapter.input.rest.model.request.NewTagRequest;
+import com.wmm.api.tags.infrastructure.adapter.input.rest.model.response.TagResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -17,13 +16,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class TagInputAdapter {
 
     private final CreateTagUseCase createTagUseCase;
-    private TagResponse tagResponse = new TagResponse();
+
+    private final DeleteTagUseCase deleteTagUseCase;
+
+    @Autowired
+    private final TagMapper tagMapper;
+
 
     @PostMapping
     public TagResponse saveNewTag(@RequestBody NewTagRequest tagRequest) {
-        System.out.println(tagRequest);
-        Tag createdTag = createTagUseCase.execute(tagRequest.toModel());
-        tagResponse.mapFromModel(createdTag);
-        return tagResponse;
+        Tag createdTag = createTagUseCase
+                .execute(tagMapper.newRequestToModel(tagRequest));
+        return tagMapper.modelToResponse(createdTag);
+    }
+
+    @DeleteMapping
+    public void deleteTag(@RequestParam String tagId) {
+        deleteTagUseCase.execute(tagId);
     }
 }

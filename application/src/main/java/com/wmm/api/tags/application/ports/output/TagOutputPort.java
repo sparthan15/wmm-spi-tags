@@ -5,4 +5,6 @@ import com.wmm.api.tags.domain.entities.Tag;
 public interface TagOutputPort {
 
     Tag create(Tag tag);
+
+    void delete(String tagId);
 }

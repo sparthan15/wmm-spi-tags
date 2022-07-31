@@ -24,8 +24,8 @@ public class GetTagEndpointTest {
 
     @Test
     public void testGetTagsByUserId() throws Exception {
-        mockMvc.perform(get(apiUri)
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(apiUri + "?userId=1")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 }

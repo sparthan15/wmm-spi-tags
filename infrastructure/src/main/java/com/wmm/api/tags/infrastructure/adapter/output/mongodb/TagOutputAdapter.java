@@ -2,9 +2,12 @@ package com.wmm.api.tags.infrastructure.adapter.output.mongodb;
 
 import com.wmm.api.tags.application.ports.output.TagOutputPort;
 import com.wmm.api.tags.domain.entities.Tag;
+import com.wmm.api.tags.domain.exception.TagNotFoundException;
+import com.wmm.api.tags.infrastructure.adapter.input.rest.model.TagMapper;
 import com.wmm.api.tags.infrastructure.adapter.output.mongodb.entity.TagEntity;
 import com.wmm.api.tags.infrastructure.adapter.output.mongodb.repository.TagRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -13,14 +16,19 @@ public class TagOutputAdapter implements TagOutputPort {
 
     private final TagRepository tagRepository;
 
+    @Autowired
+    private final TagMapper tagMapper;
+
     @Override
     public Tag create(Tag tag) {
 
-        return tagRepository.save(TagEntity.builder()
-                .name(tag.getName())
-                .description(tag.getDescription())
-                .thresholdLimit(tag.getThresholdLimit())
-                .userId(tag.getUserId())
-                .build()).toModel();
+        return tagRepository.save(tagMapper.modelToEntity(tag)).toModel();
+    }
+
+    @Override
+    public void delete(String tagId) {
+        TagEntity tagToDelete = tagRepository.findById(tagId)
+                .orElseThrow(() -> new TagNotFoundException());
+        tagRepository.delete(tagToDelete);
     }
 }

@@ -3,7 +3,7 @@ package util;
 import com.wmm.api.tags.domain.entities.Tag;
 import com.wmm.api.tags.domain.entities.ThresholdLimit;
 import com.wmm.api.tags.domain.vo.ThresholdPeriod;
-import com.wmm.api.tags.infrastructure.adapters.model.request.NewTagRequest;
+import com.wmm.api.tags.infrastructure.adapter.input.rest.model.request.NewTagRequest;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

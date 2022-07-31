@@ -1,7 +1,7 @@
 package com.wmm.api.tags.infrastructure.adapters.ouput.mongodb;
 
 import com.wmm.api.tags.infrastructure.adapter.TagsApplication;
-import com.wmm.api.tags.infrastructure.adapters.model.response.TicketResponse;
+import com.wmm.tickets.infrastructure.adapters.model.response.TicketResponse;
 import com.wmm.api.tags.infrastructure.adapter.output.mongodb.entity.TagEntity;
 import com.wmm.api.tags.infrastructure.adapter.output.mongodb.repository.TagRepository;
 import org.junit.jupiter.api.Test;
@@ -33,15 +33,14 @@ public class MongoTemplateTest {
 
     @Test
     public void testGroupAndSumValues(@Autowired MongoTemplate mongoTemplate) {
-        GroupOperation groupOperationSum = group( "userId")
+        GroupOperation groupOperationSum = group("userId")
                 .sum("amount")
-                .as("amount")
-                ;
+                .as("amount");
         MatchOperation matchOperation = match(new Criteria("userId")
                 .is(USER_ID_TEST));
 
         Aggregation aggregation = newAggregation(
-                matchOperation,  groupOperationSum);
+                matchOperation, groupOperationSum);
 
         AggregationResults<TicketResponse> response = mongoTemplate.aggregate(aggregation,
 
@@ -52,7 +51,7 @@ public class MongoTemplateTest {
     }
 
     @Test
-    public void test2(@Autowired MongoTemplate mongoTemplate){
+    public void test2(@Autowired MongoTemplate mongoTemplate) {
         Query query = new Query();
         query.addCriteria(Criteria.where("userId").is(USER_ID_TEST));
         mongoTemplate.find(query, TagEntity.class, "tags");
