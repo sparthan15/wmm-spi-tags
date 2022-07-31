@@ -1,9 +1,9 @@
 package com.wmm.api.tags.infrastructure.adapters.ouput.mongodb;
 
-import com.wmm.api.tags.infrastructure.adapter.TagsApplication;
+import com.wmm.api.tags.infrastructure.TagsApplication;
+import com.wmm.api.tags.infrastructure.adapters.output.mongodb.entity.TagEntity;
+import com.wmm.api.tags.infrastructure.adapters.output.mongodb.repository.TagRepository;
 import com.wmm.tickets.infrastructure.adapters.model.response.TicketResponse;
-import com.wmm.api.tags.infrastructure.adapter.output.mongodb.entity.TagEntity;
-import com.wmm.api.tags.infrastructure.adapter.output.mongodb.repository.TagRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

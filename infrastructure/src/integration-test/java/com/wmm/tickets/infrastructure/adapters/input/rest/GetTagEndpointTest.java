@@ -1,6 +1,6 @@
 package com.wmm.tickets.infrastructure.adapters.input.rest;
 
-import com.wmm.api.tags.infrastructure.adapter.TagsApplication;
+import com.wmm.api.tags.infrastructure.TagsApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

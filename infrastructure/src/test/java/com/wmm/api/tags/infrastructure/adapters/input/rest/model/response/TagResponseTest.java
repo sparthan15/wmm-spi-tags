@@ -1,7 +1,6 @@
 package com.wmm.api.tags.infrastructure.adapters.input.rest.model.response;
 
 import com.wmm.api.tags.domain.entities.Tag;
-import com.wmm.api.tags.infrastructure.adapter.input.rest.model.response.TagResponse;
 import org.junit.jupiter.api.Test;
 import util.TestUtil;
 

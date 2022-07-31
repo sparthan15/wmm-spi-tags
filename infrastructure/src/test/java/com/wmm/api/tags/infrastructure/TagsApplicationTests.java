@@ -1,8 +1,7 @@
 package com.wmm.api.tags.infrastructure;
 
-import com.wmm.api.tags.infrastructure.adapter.TagsApplication;
-import com.wmm.api.tags.infrastructure.adapter.output.mongodb.entity.TagEntity;
-import com.wmm.api.tags.infrastructure.adapter.output.mongodb.repository.TagRepository;
+import com.wmm.api.tags.infrastructure.adapters.output.mongodb.entity.TagEntity;
+import com.wmm.api.tags.infrastructure.adapters.output.mongodb.repository.TagRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +17,7 @@ class TagsApplicationTests {
     private TagRepository tagRepository;
 
     @Test
-    public void testSave(){
+    public void testSave() {
         TagEntity tagEntity = new TagEntity(TestUtil.createNewMonthlyTagRequest());
         TagEntity savedTag = tagRepository.save(tagEntity);
         assertThat(savedTag.getId()).isNotNull();

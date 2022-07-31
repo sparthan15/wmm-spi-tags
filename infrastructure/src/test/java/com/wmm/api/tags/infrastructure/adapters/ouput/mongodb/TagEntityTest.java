@@ -1,7 +1,7 @@
 package com.wmm.api.tags.infrastructure.adapters.ouput.mongodb;
 
 import com.wmm.api.tags.domain.entities.ThresholdLimit;
-import com.wmm.api.tags.infrastructure.adapter.output.mongodb.entity.TagEntity;
+import com.wmm.api.tags.infrastructure.adapters.output.mongodb.entity.TagEntity;
 import org.junit.jupiter.api.Test;
 import util.TestUtil;
 
@@ -21,7 +21,7 @@ public class TagEntityTest {
     }
 
     @Test
-    public void tagEntityCanBeBuildFromATagRequest(){
+    public void tagEntityCanBeBuildFromATagRequest() {
         TagEntity newTagEntity = new TagEntity(TestUtil.createNewMonthlyTagRequest());
         System.out.println(newTagEntity);
         assertThat(newTagEntity.getId()).isNull();

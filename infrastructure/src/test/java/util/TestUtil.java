@@ -3,7 +3,9 @@ package util;
 import com.wmm.api.tags.domain.entities.Tag;
 import com.wmm.api.tags.domain.entities.ThresholdLimit;
 import com.wmm.api.tags.domain.vo.ThresholdPeriod;
-import com.wmm.api.tags.infrastructure.adapter.input.rest.model.request.NewTagRequest;
+import com.wmm.api.tags.infrastructure.adapters.input.rest.model.NewTagRequest;
+import com.wmm.api.tags.infrastructure.adapters.input.rest.model.response.TagResponse;
+import com.wmm.api.tags.infrastructure.adapters.output.mongodb.entity.TagEntity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -37,6 +39,16 @@ public class TestUtil {
 
     }
 
+    public static TagEntity createNewMonthlyTagEntity() {
+        return TagEntity.builder()
+                .userId(USER_ID_TEST)
+                .name("RAPPI")
+                .description("Home shopping")
+                .thresholdLimit(ThresholdLimit.byPeriodName(10.0, ThresholdPeriod.MONTHLY.name()))
+                .build();
+
+    }
+
     public static NewTagRequest createdMonthlyTagRequest() {
         return NewTagRequest.builder()
                 .userId(USER_ID_TEST)
@@ -45,8 +57,15 @@ public class TestUtil {
                 .description("Home shopping")
                 .period(ThresholdPeriod.MONTHLY.name())
                 .build();
-
     }
 
-
+    public static TagResponse createdMonthlyTagResponse() {
+        return TagResponse.builder()
+                .userId(USER_ID_TEST)
+                .amount(0.0)
+                .name("RAPPI")
+                .description("Home shopping")
+                .period(ThresholdPeriod.MONTHLY.name())
+                .build();
+    }
 }

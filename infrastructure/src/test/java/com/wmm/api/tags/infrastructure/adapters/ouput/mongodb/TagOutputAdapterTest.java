@@ -2,10 +2,10 @@ package com.wmm.api.tags.infrastructure.adapters.ouput.mongodb;
 
 import com.wmm.api.tags.domain.entities.Tag;
 import com.wmm.api.tags.domain.exception.TagNotFoundException;
-import com.wmm.api.tags.infrastructure.adapter.input.rest.model.TagMapper;
-import com.wmm.api.tags.infrastructure.adapter.output.mongodb.TagOutputAdapter;
-import com.wmm.api.tags.infrastructure.adapter.output.mongodb.entity.TagEntity;
-import com.wmm.api.tags.infrastructure.adapter.output.mongodb.repository.TagRepository;
+import com.wmm.api.tags.infrastructure.adapters.TagOutputAdapter;
+import com.wmm.api.tags.infrastructure.adapters.input.rest.model.TagMapper;
+import com.wmm.api.tags.infrastructure.adapters.output.mongodb.entity.TagEntity;
+import com.wmm.api.tags.infrastructure.adapters.output.mongodb.repository.TagRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
