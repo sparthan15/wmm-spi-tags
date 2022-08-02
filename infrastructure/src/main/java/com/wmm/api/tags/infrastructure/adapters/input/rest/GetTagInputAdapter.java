@@ -27,9 +27,9 @@ public class GetTagInputAdapter {
 
     @GetMapping
     public Page<TagResponse> getTagsByUser(@RequestParam String userId, Pageable pageable) {
-        return new PageImpl<>(repository.findByUserId(userId, pageable)
+        return new PageImpl(repository.findByUserId(userId, pageable)
                 .stream()
                 .map(tagMapper::entityToResponse)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList()), pageable, repository.count());
     }
 }
